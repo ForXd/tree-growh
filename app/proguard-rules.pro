@@ -1,0 +1,8 @@
+-keep class com.forxd.treegrowth.Habit { *; }
+-keep class com.forxd.treegrowth.Plan { *; }
+-keep class com.forxd.treegrowth.Entry { *; }
+-keep class com.forxd.treegrowth.GardenData { *; }
+-keep class com.forxd.treegrowth.Preferences { *; }
+-keepattributes Signature
+-keep class com.forxd.treegrowth.Challenge { *; }
+-keep class com.forxd.treegrowth.ChallengeCell { *; }
