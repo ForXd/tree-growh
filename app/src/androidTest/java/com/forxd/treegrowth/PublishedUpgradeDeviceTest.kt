@@ -29,7 +29,6 @@ class PublishedUpgradeDeviceTest {
             click(By.text("开启我的 100 次"))
             val input = device.wait(Until.findObject(By.clazz("android.widget.EditText")), 10000) ?: error("No challenge input")
             input.text = "升级保留的跳绳"
-            device.pressBack()
             click(By.text("开启百次挑战"))
             click(By.text("完成一次 · 点亮第 1 格"))
         }
@@ -37,15 +36,19 @@ class PublishedUpgradeDeviceTest {
         click(By.text("我的"))
         var found = false
         repeat(7) {
-            if (device.hasObject(By.text("应用更新"))) found = true
+            if (device.hasObject(By.textContains("应用更新"))) found = true
             if (!found) { device.swipe(device.displayWidth/2, device.displayHeight*8/10, device.displayWidth/2, device.displayHeight*3/10, 20); device.waitForIdle() }
         }
-        click(By.text("应用更新"))
+        device.swipe(device.displayWidth/2, device.displayHeight*7/10, device.displayWidth/2, device.displayHeight*3/10, 30)
+        device.waitForIdle()
+        click(By.textContains("应用更新"))
+        if (!device.wait(Until.hasObject(By.text("青芽在慢慢变好")), 3000)) click(By.textContains("应用更新"))
+        assertTrue(device.wait(Until.hasObject(By.text("青芽在慢慢变好")), 10000))
         click(By.text("下载更新"), 60000)
         click(By.text("安装更新"), 180000)
         // First-time source permission is part of the path, not pre-granted by adb.
         val toggle = device.wait(Until.findObject(By.res("android:id/switch_widget")), 5000)
-            ?: device.findObject(By.clazz("android.widget.Switch"))
+            ?: device.findObject(By.clazz("android.widget.Switch")) ?: device.findObject(By.checkable(true))
         if (toggle != null) { if (!toggle.isChecked) toggle.click(); device.pressBack(); device.waitForIdle() }
         val install = device.wait(Until.findObject(By.text("Update")), 15000)
             ?: device.findObject(By.text("更新")) ?: device.findObject(By.text("Install")) ?: device.findObject(By.text("安装"))

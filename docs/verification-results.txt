@@ -1,0 +1,25 @@
+Final local device suite:
+
+com.forxd.treegrowth.GardenDeviceTest:.....
+
+Time: 92.226
+
+OK (5 tests)
+
+
+
+Published upgrade suite:
+
+com.forxd.treegrowth.PublishedUpgradeDeviceTest:.
+
+Time: 36.2
+
+OK (1 test)
+
+
+
+Installed package identity:
+    versionCode=2 minSdk=26 targetSdk=37
+    versionName=1.0.0
+    lastUpdateTime=2026-11-06 19:31:47
+      firstInstallTime=2026-11-06 19:24:56
